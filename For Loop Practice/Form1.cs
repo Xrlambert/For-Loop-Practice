@@ -80,6 +80,7 @@ namespace For_Loop_Practice
         // Practice 6: Multiplication table
         private void btnPractice6_Click(object sender, EventArgs e)
         {
+            bool errorFlag = false;
             txtOutput.Clear();
             int rows = 10;
             int cols = 10;
@@ -87,16 +88,22 @@ namespace For_Loop_Practice
             if (int.TryParse(txtRows.Text, out int r)) rows = r;
             if (int.TryParse(txtCols.Text, out int c)) cols = c;
 
-            if (rows + cols < 250) 
-            txtOutput.AppendText("NO!");
-
-            for (int i = 1; i <= rows; i++)
+            if (rows + cols > 150) 
             {
-                for (int j = 1; j <= cols; j++)
+                txtOutput.AppendText("NO!");
+                errorFlag = true;
+            }
+
+            if (errorFlag == false) 
+            {
+                for (int i = 1; i <= rows; i++)
                 {
-                    txtOutput.AppendText((i * j).ToString().PadLeft(4));
+                    for (int j = 1; j <= cols; j++)
+                    {
+                        txtOutput.AppendText((i * j).ToString().PadLeft(4));
+                    }
+                    txtOutput.AppendText(Environment.NewLine);
                 }
-                txtOutput.AppendText(Environment.NewLine);
             }
         }
     }
